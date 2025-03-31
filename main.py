@@ -140,9 +140,11 @@ else:
     st.subheader("Fingerprinting Ceramics from the Chalcolithic Santa Vitória Enclosure (SW Iberia)")
 st.markdown("---")
 st.markdown("""
-*Esta aplicação apresenta um resumo e análise do artigo de investigação: Marques, R. et al. (2024). Fingerprinting Ceramics from the Chalcolithic Santa Vitória Enclosure (SW Iberia). Minerals 14, 399. [Link para o artigo](https://www.mdpi.com/2075-163X/14/4/399)*
+*Apresenta-se um resumo e análise do artigo científico: "Marques, R. et al. (2024). Fingerprinting Ceramics from the Chalcolithic Santa Vitória Enclosure (SW Iberia). Minerals 14, 399." 
+ Este trabalho foi realizado pelos elementos do grupo 5 constituído por Guilherme Prestes (LEMEC), Guilherme Amaro (LEMEC), Liedson Cunha (LEIC).
+ [Link para o artigo](https://www.mdpi.com/2075-163X/14/4/399)*
 
-**Objetivo:** Introduzir o artigo científico, analisar os resultados obtidos, identificar os problemas abordados, metodologia aplicada, as conlcusões chegadas e as possíveis contribuições para o avanço do caso de estudo. 
+**Objetivo:** Introduzir o artigo científico e identificar os problemas abordados; analisar os resultados obtidos e as metodologias aplicadas; apresentar as conlcusões chegadas e as possíveis contribuições para o avanço do caso de estudo. 
 """)
 
 # --- Main Content Sections ---
@@ -150,40 +152,104 @@ st.markdown("""
 # 1. Introduction & Context
 with st.expander("1. Introdução: Estudo realizado no Recinto Calcolítico de Santa Vitória"):
     st.markdown("""
-    **Tipo de Património:** Cerâmicas arqueológicas do período Calcolítico (aprox. 4º-3º milénio a.C.).
-
-    **O Recinto:**
-    *   Localizado perto de Campo Maior, Alentejo, sul de Portugal.
-    *   ...
-    *   Apresenta dois fossos concêntricos (Fosso 1 e Fosso 2) ...
-    *   Geologia: ...
-
-    **(Ver Figuras 1 & 2 no artigo para visuais e planta do sítio)**
-
-    **Questões de Investigação Abordadas:**
-    1.  De onde vieram as matérias-primas para as cerâmicas (**proveniência** - local ou não local)?
-    2.  ...
-    3.  ...
-    """)
+    <h3 style="color:#388cb0;"><b>Património Estudado:</b></h3> 
+    O estudo foca em cerâmicas arqueológicas provenientes do recinto Calcolítico de Santa Vitória, 
+    situado em Campo Maior, no Alentejo, sul de Portugal. O recinto, caracterizado por dois fossos 
+    concêntricos de traçado sinuoso com lóbulos semicirculares contíguos, datada da segunda metade do 3.º 
+    milénio a.C. (Fosso 1: 2556-2040 cal AC; Fosso 2: 2460-2200 cal AC, segundo datações por radiocarbono). 
+    Classificado como de interesse público nacional, Santa Vitória é considerado um espaço cerimonial,
+    testemunho das práticas sociais, rituais e cosmológicas das comunidades pré-históricas da região.
+    
+    <ul>
+    <li><b style="color:#808b96; font-size:20px;">
+        Objetivo principal:</b> 
+        Contribuir para a contextualização dos artefactos cerâmicos, para melhor compreender  
+        as tecnologias de produção utilizadas e a origem das matérias-primas, entretanto, discutir o papel
+        do recinto no panorama regional.
+    </li>
+    <li><b style="color:#808b96; font-size:20px;">Amostras:</b> 
+    Foram estudados 25 fragmentos cerâmicos recolhidos em duas secções distintas do Fosso 1. Estes fragmentos 
+    incluem diferentes tipologias, como tigelas, contas (pequenos objetos que poderão ter sido utilizados como 
+    decoração) e fragmentos indiferenciados (peças cuja forma original é difícil de identificar).
+    </li>
+    </ul>
+    
+    <p style="color:Gray;"><i>(Ver Figuras 1 & 2 no artigo para visuais e planta do sítio)</i></p>
+    
+    <h3 style="color:#388cb0;">Questões de Investigação Abordadas</h3>
+                
+    Para melhor interpretação foram feitas as seguintes questões para ajudar a guiar o estudo
+    O artigo busca responder a: 
+                
+    <ol>
+    <li><b style="color:#808b96;">Procedência das cerâmicas:</b> Foram as cerâmicas produzidas localmente ou terão sido importadas de outros locais? A questão pretende determinar se os materiais usados foram de produção local ou se poderia ter vindo de locais mais distantes. </li>
+    <li><b style="color:#808b96;">Técnicas de fabrico:</b> Que tecnologias foram usados na produção destas cerâmicas? Explora-se a temperatura de cozedura, determinada a partir das fases minerais presentes, e a composição da pasta cerâmica.</li>
+    <li><b style="color:#808b96;">Diferenças entre as seções do fosso:</b> Existem variações significativas na composição mineralógica e química das cerâmicas recolhidas nas duas secções do Fosso 1? Com esta análise procura-se identificar possíveis diferenças nas práticas de produção, como as alterações temporais ou mesmo preferências dos materiais.</li>
+    <li><b style="color:#808b96;">Implicações sociais:</b> Que informações as cerâmicas fornecem sobre as dinâmicas sociais da comunidade? Padrões de troca, o que implica contactos com as outras comunidades, para construção da identidade cultural e identifcar em que contexto socila Santa Vitória se integrava, seja como um espaço ritual ou de reunião.</li>
+    </ol>
+    """, unsafe_allow_html=True)
 
 # 2. Methodology
 with st.expander("2. Metodologia: Técnicas usadas para estudar as Cerâmicas"):
     st.markdown("""
-    **Amostras:**
-    *   25 fragmentos cerâmicos (sherd) recolhidos do **Fosso 1** do recinto.
-    *   As amostras são de dois setores de escavação distintos:
-        *   **Sector 1 (Oeste):** 10 amostras das camadas superiores de enchimento (UE 101-108).
-        *   **Sector 2 (Norte):** 15 amostras das camadas inferiores de enchimento (UE 137-140).
-    *   ...
-    *   ...
-
-    **(Ver Figuras 3 & 4 no artigo)**
-
-    **Técnicas Analíticas:**
-    *   **Difração de Raios-X (DRX / XRD):** Para identificar as **fases minerais** presentes na pasta cerâmica ...
-    *   **Análise por Ativação Neutrónica (AAN / NAA):** ...
-    *   **Análise Estatística:** ...
-    """)
+    <h3 style="color:#388cb0;">Métodos de Análise</h3>
+    
+    Para determinar a proveniência das matérias-primas, assim como as tecnologias de produção 
+    e a diferença composicional entre of fragmentos, foram usados diferentes técnicas para 
+    determinar tanto os componentes químicos como mineralógicos presentes nos fragmentos. 
+    
+    <ul>
+    <li><b style="color:#808b96; font-size:20px;">1. Difração de Raios-X (XRD):</b> 
+        <ul>
+            <li>Identificar as fases minerais presentes nas cerâmicas, tais como: quartzo, plagioclásios, anfibólios, filossilicatos, feldspatos alcalinos e hematite.</li>
+            <li>A presença de filossilicatos e a ausência de minerais característicos de altas temperaturas apontam para uma queima das cerâmicas a temperaturas inferiores a 850°C.</li>
+        </ul>
+    </li>
+    
+    <li><b style="color:#808b96; font-size:20px;">2. Análise por Ativação Neutrônica (NAA):</b> 
+        <ul>
+            <li>Quantificar 24 elementos químicos, incluindo elementos maioritários (ex.: Na, K, Fe) e em traços (ex.: terras raras, Rb, Cs).</li>
+            <li>Normalização com escândio (Sc) para minimizar variações naturais e antrópicas.</li>
+        </ul>
+    </li>
+    
+    <li><b style="color:#808b96; font-size:20px;">3. Análises Estatísticas:</b> 
+        <ul>
+            <li><b>Clusterização hierárquica:</b> Agrupar amostras com composições químicas semelhantes.</li>
+            <li><b>Correlação de Pearson:</b> Avaliar relações entre elementos químicos.</li>
+        </ul>
+    </li>
+    </ul>
+    
+    <h3 style="color:#388cb0;">Resultados Principais</h3>
+    
+    <ul>
+    <li><b style="color:#808b96;">Proveniência local:</b> A composição mineralógica das cerâmicas, dominada por plagioclásios, anfibólios e quartzo, reflete o contexto geológico regional, caracterizado por gabros, dioritos e rochas híbridas da região.</li>
+    
+    <li><b style="color:#808b96;">Tecnologia de produção:</b> 
+        <ul>
+            <li>Temperatura de queima inferior a 850°C.</li>
+            <li>Uso de Temperantes: Adição de grãos não plásticos (temper) em proporções variáveis, com maior evidência na Secção 1, onde os fragmentos apresentam uma textura mais grosseira devido ao tamanho superior dos grãos.</li>
+        </ul>
+    </li>
+    
+    <li><b style="color:#808b96;">Diferenças entre seções:</b> 
+        <ul>
+            <li><b>Seção 1:</b> Maior proporção de grãos grossos e menor teor de ferro.</li>
+            <li><b>Seção 2:</b> Maior heterogeneidade química e maior presença de anfibólios/ferro.</li>
+        </ul>
+    </li>
+    
+    <li><b style="color:#808b96;">Amostras atípicas:</b> 
+        <ul>
+            <li><b>Amostra 163:</b> Alto teor de potássio (K), associado a feldspatos alcalinos.</li>
+            <li><b>Amostra 183:</b> Alto teor de sódio (Na), ligado a plagioclásios.</li>
+        </ul>
+    </li>
+    </ul>
+    
+    <p style="color:Gray;"><i>(Ver Figuras 3 & 4 no artigo)</i></p>
+    """, unsafe_allow_html=True)
 
 # 3. Results
 with st.expander("3. Dados: Apresentação dos Resultados Obtidos"):
@@ -349,14 +415,31 @@ with st.expander("3. Dados: Apresentação dos Resultados Obtidos"):
 # 4. Discussion & Conclusions
 with st.expander("4. Discussão e Conclusões"):
     st.markdown("""
-    **Principais Conclusões:**
-    1.  **Produção Local:** ...
-    2.  **...** ...
-    """)
+    <h3 style="color:#388cb0;">Conclusões e Implicações</h3>
+                
+    As cerâmicas calcolíticas de Santa Vitória sugerem uma produção local dominante, compatível com o contexto geológico regional (gabros e dioritos), embora trocas regionais não sejam descartáveis. Variações tecnológicas, como diferenças nos temperantes e heterogeneidade química entre secções, indicam distinções nas práticas de produção ou grupos sociais. 
+    
+    <li><b style="color:#808b96;">Limitações:</b>
+        <ul>
+            <li>Falta de análise de matérias-primas locais para comparação direta.</li>
+            <li>Número limitado de amostras por tipologia cerâmica.</li>
+        </ul>
+    </li>
+    
+    <li><b style="color:#808b96;">Perspectivas futuras:</b>
+        <ul>
+            <li>Estudos complementares com argilas regionais e mais amostras para confirmar padrões.</li>
+            <li>Análises isotópicas ou de luminescência para refinamento cronológico.</li>
+        </ul>
+    </li>
+    </ul>
+    """, unsafe_allow_html=True)
 
 # 5. Student Perspective
 st.markdown("---")
-st.header("5. Contributo para a Área de Estudo")
+st.markdown("""
+    <h3 style="color:#076aa6;">5. Contributo para a Área de Estudo</h3>
+    """, unsafe_allow_html=True) 
 st.markdown("""
 **Enquanto estudantes de licenciatura, é pertinente começarmos a pensar de que modo podemos aplicar os conhecimentos adquiridos em benefício de um propósito maior. 
 Portanto, a questão que se pretende abordar nesta secção é a seguinte: de que forma podemos intervir ou contribuir para o avanço da área de estudo apresentada?**
@@ -372,6 +455,10 @@ st.markdown("""
 *   *(Nota: )*
 """)
 
+# No mestrado estou a pensar seguir AI, que é uma coisa muito falada hoje em dia e quase toda gente usada. 
+# Não só para esta área de estudo em específico, vendo o panorama geral, posso dizer que vai ter um impacto 
+# em todas as áreas. Nesta em específico, vai poder ajudar os arqueólogos, biólogos, entre outros, a conseguir 
+# analisar muito mais rápido e mais eficiente os dados, e conseguir relacionar os dados numa velocidade impressionante.
 st.subheader("5.2 LEIC")
 st.markdown("""
 *   ...
