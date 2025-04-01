@@ -177,15 +177,14 @@ with st.expander("1. Introdução: Estudo realizado no Recinto Calcolítico de S
     <p style="color:Gray;"><i>(Ver Figuras 1 & 2 no artigo para visuais e planta do sítio)</i></p>
     
     <h3 style="color:#388cb0;">Questões de Investigação Abordadas</h3>
-                
-    Para melhor interpretação foram feitas as seguintes questões para ajudar a guiar o estudo
-    O artigo busca responder a: 
-                
+    
+    O artigo aborda as seguintes questões:
+    
     <ol>
-    <li><b style="color:#808b96;">Procedência das cerâmicas:</b> Foram as cerâmicas produzidas localmente ou terão sido importadas de outros locais? A questão pretende determinar se os materiais usados foram de produção local ou se poderia ter vindo de locais mais distantes. </li>
-    <li><b style="color:#808b96;">Técnicas de fabrico:</b> Que tecnologias foram usados na produção destas cerâmicas? Explora-se a temperatura de cozedura, determinada a partir das fases minerais presentes, e a composição da pasta cerâmica.</li>
-    <li><b style="color:#808b96;">Diferenças entre as seções do fosso:</b> Existem variações significativas na composição mineralógica e química das cerâmicas recolhidas nas duas secções do Fosso 1? Com esta análise procura-se identificar possíveis diferenças nas práticas de produção, como as alterações temporais ou mesmo preferências dos materiais.</li>
-    <li><b style="color:#808b96;">Implicações sociais:</b> Que informações as cerâmicas fornecem sobre as dinâmicas sociais da comunidade? Padrões de troca, o que implica contactos com as outras comunidades, para construção da identidade cultural e identifcar em que contexto socila Santa Vitória se integrava, seja como um espaço ritual ou de reunião.</li>
+    <li><b style="color:#808b96;">Procedência das cerâmicas:</b> As cerâmicas foram produzidas localmente ou terão sido importadas de outros locais? </li>
+    <li><b style="color:#808b96;">Técnicas de fabrico:</b> Que tecnologias foram usados na produção destas cerâmicas? </li>
+    <li><b style="color:#808b96;">Diferenças entre as seções do fosso:</b> Existem variações significativas na composição mineralógica e química das cerâmicas? </li>
+    <li><b style="color:#808b96;">Implicações sociais:</b> Que informações as cerâmicas fornecem sobre as dinâmicas sociais da comunidade? </li>
     </ol>
     """, unsafe_allow_html=True)
 
@@ -195,7 +194,7 @@ with st.expander("2. Metodologia: Técnicas usadas para estudar as Cerâmicas"):
     <h3 style="color:#388cb0;">Métodos de Análise</h3>
     
     Para determinar a proveniência das matérias-primas, assim como as tecnologias de produção 
-    e a diferença composicional entre of fragmentos, foram usados diferentes técnicas para 
+    e a diferença composicional entre os fragmentos, foram usados diferentes técnicas para 
     determinar tanto os componentes químicos como mineralógicos presentes nos fragmentos. 
     
     <ul>
@@ -229,7 +228,7 @@ with st.expander("2. Metodologia: Técnicas usadas para estudar as Cerâmicas"):
     <li><b style="color:#808b96;">Tecnologia de produção:</b> 
         <ul>
             <li>Temperatura de queima inferior a 850°C.</li>
-            <li>Uso de Temperantes: Adição de grãos não plásticos (temper) em proporções variáveis, com maior evidência na Secção 1, onde os fragmentos apresentam uma textura mais grosseira devido ao tamanho superior dos grãos.</li>
+            <li>Uso de Temperantes: Adição de grãos não plásticos (temper) em proporções variáveis, com maior evidência na Secção 1, onde os fragmentos <br> apresentam uma textura mais grosseira devido ao tamanho superior dos grãos.</li>
         </ul>
     </li>
     
