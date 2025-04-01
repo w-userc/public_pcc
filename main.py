@@ -413,14 +413,14 @@ with st.expander("4. Discussão e Conclusões"):
 # 5. Student Perspective
 st.markdown("---")
 st.markdown("""
-    <h3 style="color:#076aa6;">5. Contributo para a Área de Estudo</h3>
+    <h3 style="color:#076aa6;"> Contributo para a Área de Estudo</h3>
     """, unsafe_allow_html=True) 
 st.markdown("""
 **Enquanto estudantes de licenciatura, é pertinente começarmos a pensar de que modo podemos aplicar os conhecimentos adquiridos em benefício de um propósito maior. 
 Portanto, a questão que se pretende abordar nesta secção é a seguinte: de que forma podemos intervir ou contribuir para o avanço da área de estudo apresentada?**
 """)
 
-st.subheader("5.1 LEMEC")
+st.subheader("LEMEC")
 st.markdown("""
 *   **....** 
 *   **...**:
@@ -430,7 +430,7 @@ st.markdown("""
 *   *(Nota: )*
 """)
 
-st.subheader("5.1 Contributo de LEIC")
+st.subheader("Licenciatura em Engenharia Informática e de Computadores (LEIC)")
 st.markdown("""
 Como futuro profissional, destaco:
 
