@@ -174,7 +174,7 @@ with st.expander("1. Introdução: Estudo realizado no Recinto Calcolítico de S
     </li>
     </ul>
     
-    <p style="color:Gray;"><i>(Ver Figuras 1 & 2 no artigo para visuais e planta do sítio)</i></p>
+    <p style="color:Gray;"><i>(Ver Figuras 1 & 2 no artigo)</i></p>
     
     <h3 style="color:#388cb0;">Questões de Investigação Abordadas</h3>
     
@@ -420,16 +420,25 @@ st.markdown("""
 Portanto, a questão que se pretende abordar nesta secção é a seguinte: de que forma podemos intervir ou contribuir para o avanço da área de estudo apresentada?**
 """)
 
-st.subheader("LEMEC")
+st.subheader("Licenciatura em Engenharia Mecânica (LEMEC)")
 st.markdown("""
-*   **....** 
-*   **...**:
-    *   ...
-    *   ...
-    *   ...
-*   *(Nota: )*
+*   Melhorar a Análise dos Materiais 
+*   Usar softwares como SolidWorks para simular:
+    *   Como as cerâmicas se comportam sob pressão ou calor (ex.: resistência ao quebrar).
+    *   Se a temperatura de queima (inferior a 850°C, como no estudo) afeta sua durabilidade.
 """)
+st.markdown("---")
+st.markdown("""
+*   Recriação de Forno Experimental
+*   **Objetivo:** Testar o comportamento da argila local em diferentes temperaturas de queima.
+*   **Metodologia:**
+    *   Construir um forno em escala reduzida, considerando princípios de termodinâmica.
+    *   Testar temperaturas entre 700°C e 900°C.
+    *   Medir tempo de queima, taxa de resfriamento e resistência do material.
 
+*   **Aplicação:** Validar se a queima abaixo de 850°C produzia cerâmica resistente ou se era uma limitação técnica da época.
+""")
+st.markdown("---")
 st.subheader("Licenciatura em Engenharia Informática e de Computadores (LEIC)")
 st.markdown("""
 Como futuro profissional, destaco:
