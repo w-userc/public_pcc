@@ -250,7 +250,142 @@ with st.expander("2. Metodologia: Técnicas usadas para estudar as Cerâmicas"):
     <p style="color:Gray;"><i>(Ver Figuras 3 & 4 no artigo)</i></p>
     """, unsafe_allow_html=True)
 
+# 3. Results
+with st.expander("3. Dados: Apresentação dos Resultados Obtidos"):
+    st.markdown("### 3.1 Informação das Amostras")
+    if df_reference is not None and 'Sample Reference' in df_reference.columns and 'Section' in df_reference.columns:
+        tab1, tab2 = st.tabs(["Amostras Sector 1 (n=10)", "Amostras Sector 2 (n=15)"])
+        with tab1:
+            st.dataframe(df_reference[df_reference['Section'] == 1][['Sample Reference', 'SU', 'Type', 'Sub-Type']].reset_index(drop=True))
+        with tab2:
+            st.dataframe(df_reference[df_reference['Section'] == 2][['Sample Reference', 'SU', 'Type', 'Sub-Type']].reset_index(drop=True))
+    else:
+        st.warning("Não foi possível carregar os dados de referência ou faltam colunas necessárias ('Sample Reference', 'Section').")
 
+    st.markdown("### 3.2 Composição Mineralógica (Resultados DRX / XRD)")
+    
+    if df_mineralogical_s1 is not None and df_mineralogical_s2 is not None:
+        tab1, tab2 = st.tabs(["Mineralogia Sector 1 (%)", "Mineralogia Sector 2 (%)"])
+        with tab1:
+            st.dataframe(df_mineralogical_s1)
+            cols_to_plot_s1 = [col for col in ['Plagioclase', 'Quartz', 'Amphibole', 'Phyllosilicates', 'K-Feldspar', 'Hematite'] if col in df_mineralogical_s1.columns]
+            if 'Sample' in df_mineralogical_s1.columns and cols_to_plot_s1:
+                 st.bar_chart(df_mineralogical_s1.set_index("Sample")[cols_to_plot_s1])
+            else:
+                 st.warning("Não foi possível gerar o gráfico de mineralogia do Sector 1 (falta coluna 'Sample' ou colunas de dados).")
+        with tab2:
+            st.dataframe(df_mineralogical_s2)
+            cols_to_plot_s2 = [col for col in ['Plagioclase', 'Quartz', 'Amphibole', 'Phyllosilicates', 'K-Feldspar', 'Hematite'] if col in df_mineralogical_s2.columns]
+            if 'Sample' in df_mineralogical_s2.columns and cols_to_plot_s2:
+                 st.bar_chart(df_mineralogical_s2.set_index("Sample")[cols_to_plot_s2])
+            else:
+                 st.warning("Não foi possível gerar o gráfico de mineralogia do Sector 2 (falta coluna 'Sample' ou colunas de dados).")
+    else:
+        st.warning("Não foi possível carregar os dados mineralógicos.")
+
+    st.markdown("### 3.3 Composição Química (Resultados AAN / NAA)")
+
+    # --- Check df_chemical AFTER loading and processing ---
+    if df_chemical is not None and 'Sample' in df_chemical.columns:
+        st.markdown("#### Tabela Completa de Dados Químicos (Majoritários em %, Vestigiais em mg/kg)")
+        # Display the *processed* chemical data
+        st.dataframe(df_chemical) 
+
+        # --- Recreate Figure 5 from the paper ---
+        st.markdown("#### Diferenças Químicas (Normalizadas a Sc)")
+        st.markdown("*(Baseado na Figura 5 do artigo)*")
+
+        df_plot = df_chemical.copy()
+
+        # Merge section info - df_chemical now has 'Sample', df_reference has 'Sample Reference'
+        if df_reference is not None and 'Sample Reference' in df_reference.columns and 'Section' in df_reference.columns:
+            df_plot = pd.merge(
+                df_plot, df_reference[['Sample Reference', 'Section']],
+                left_on='Sample', right_on='Sample Reference', how='left'
+            )
+            # Optional: Drop the redundant 'Sample Reference' column
+            # if 'Sample Reference' in df_plot.columns:
+            #    df_plot = df_plot.drop(columns=['Sample Reference'])
+        else:
+            st.warning("Não foi possível juntar a informação do sector. Verifique as colunas dos dados de referência ('Sample Reference', 'Section').")
+            df_plot['Section'] = 'Desconhecido' # Fallback
+
+        # --- Plotting Logic (Mostly unchanged, check column names just in case) ---
+        # Check for element columns (use the names from the transposed df)
+        # Make sure element names from CSV (like 'Na₂O') are correctly handled if they have special characters
+        required_cols_chem = ['Fe₂O₃', 'K₂O', 'Na₂O', 'Sc']
+        
+        # Check if all required columns exist in df_plot
+        missing_cols = [col for col in required_cols_chem if col not in df_plot.columns]
+
+        if not missing_cols and 'Section' in df_plot.columns:
+            # Convert required columns to numeric again just in case (might be redundant but safe)
+            for col in required_cols_chem:
+                 df_plot[col] = pd.to_numeric(df_plot[col], errors='coerce')
+            
+            # Avoid division by zero or NaN/missing Sc values
+            df_plot = df_plot.dropna(subset=['Sc'])
+            df_plot = df_plot[df_plot['Sc'] > 0]
+
+            # Normalize data
+            df_plot['Fe_norm'] = df_plot['Fe₂O₃'] / df_plot['Sc']
+            df_plot['K_norm'] = df_plot['K₂O'] / df_plot['Sc']
+            df_plot['Na_norm'] = df_plot['Na₂O'] / df_plot['Sc']
+
+            # Handle potential NaN/inf values created during normalization
+            df_plot.replace([np.inf, -np.inf], np.nan, inplace=True)
+            df_plot.dropna(subset=['Fe_norm', 'K_norm', 'Na_norm'], inplace=True)
+
+            if not df_plot.empty:
+                fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(12, 5))
+                colors = {1: 'blue', 2: 'red', 'Desconhecido': 'grey'}
+                markers = {1: 'o', 2: 's', 'Desconhecido': '^'}
+
+                # Plot Fe vs Na (Normalized)
+                for section in df_plot['Section'].unique():
+                    group = df_plot[df_plot['Section'] == section]
+                    label_txt = f'Sector {section}' if section != 'Desconhecido' else 'Sector Desconhecido'
+                    ax1.scatter(group['Na_norm'], group['Fe_norm'],
+                                label=label_txt,
+                                color=colors.get(section, 'black'), marker=markers.get(section, 'x'), alpha=0.7)
+                    for i, row in group.iterrows():
+                        if row['Sample'] == 163 or row['Sample'] == 183:
+                            ax1.text(row['Na_norm'] * 1.01, row['Fe_norm'] * 1.01, str(int(row['Sample'])))
+                ax1.set_xlabel('Na₂O / Sc') # Match exact element name
+                ax1.set_ylabel('Fe₂O₃ / Sc') # Match exact element name
+                ax1.set_title('Fe vs Na (Normalizado)')
+                ax1.legend()
+                ax1.grid(True, linestyle='--', alpha=0.6)
+
+                # Plot K vs Na (Normalized)
+                for section in df_plot['Section'].unique():
+                    group = df_plot[df_plot['Section'] == section]
+                    label_txt = f'Sector {section}' if section != 'Desconhecido' else 'Sector Desconhecido'
+                    ax2.scatter(group['Na_norm'], group['K_norm'],
+                                label=label_txt,
+                                color=colors.get(section, 'black'), marker=markers.get(section, 'x'), alpha=0.7)
+                    for i, row in group.iterrows():
+                        if row['Sample'] == 163 or row['Sample'] == 183:
+                            ax2.text(row['Na_norm'] * 1.01, row['K_norm'] * 1.01, str(int(row['Sample'])))
+                ax2.set_xlabel('Na₂O / Sc') # Match exact element name
+                ax2.set_ylabel('K₂O / Sc') # Match exact element name
+                ax2.set_title('K vs Na (Normalizado)')
+                ax2.legend()
+                ax2.grid(True, linestyle='--', alpha=0.6)
+
+                plt.tight_layout()
+                st.pyplot(fig)
+
+            else:
+                 st.warning("Não há dados válidos disponíveis para gerar os gráficos após normalização e filtragem.")
+        else:
+            # More informative warning if columns are missing
+            st.warning(f"Não foi possível criar os gráficos. Faltam colunas necessárias para normalização ou informação de sector. Necessárias: {required_cols_chem + ['Section']}. Faltando em df_plot: {missing_cols}")
+    else:
+        # This warning should NOT appear now if loading was successful
+        st.warning("Não foi possível carregar ou processar corretamente os dados químicos (falta a coluna 'Sample' após processamento). Verifique a função `load_data` e o ficheiro CSV.")
+
+    
 
 # 4. Discussion & Conclusions
 with st.expander("4. Discussão e Conclusões"):
@@ -295,16 +430,14 @@ st.markdown("""
 *   *(Nota: )*
 """)
 
-# No mestrado estou a pensar seguir AI, que é uma coisa muito falada hoje em dia e quase toda gente usada. 
-# Não só para esta área de estudo em específico, vendo o panorama geral, posso dizer que vai ter um impacto 
-# em todas as áreas. Nesta em específico, vai poder ajudar os arqueólogos, biólogos, entre outros, a conseguir 
-# analisar muito mais rápido e mais eficiente os dados, e conseguir relacionar os dados numa velocidade impressionante.
-st.subheader("5.2 LEIC")
+st.subheader("5.1 Contributo de LEIC")
 st.markdown("""
-*   ...
-    *   **...:** ...
-*   ...
-*   *(Nota: )*
+Como futuro profissional, destaco:
+
+*   **Análise rápida:** Usar IA para processar dados químicos e mineralógicos das cerâmicas de Santa Vitória de forma eficiente.  
+*   **Ligações:** Relacionar dados de vários sítios a alta velocidade, revelando redes de troca.  
+*   **Ferramentas:** Criar plataformas que tornem os resultados acessíveis a todos.  
+*   *(Nota:)* A informática potencia a arqueologia sem a substituir.
 """)
 
 # 6. Reference 
